@@ -1,0 +1,91 @@
+entity-relationship-diagram
+
+title Plan Avenir ERD
+users [icon: user, color: yellow]{
+  id string pk
+  profileId string
+  accountId string
+}
+
+profiles [icon: user-check, color: green]{
+  id string pk
+  name string
+  email string
+  age int
+}
+
+accounts [icon: credit-card, color: blue]{
+  id string pk
+  balance float
+  contributionId string
+  investmentPlanId string
+}
+
+contributions [icon: dollar-sign, color: orange]{
+  id string pk
+  amount float
+  date timestamp
+}
+
+investment_plans [icon: bar-chart, color: purple]{
+  id string pk
+  name string
+  investmentStrategyId string
+  investmentProgressId string
+}
+
+investment_strategies [icon: trending-up, color: red]{
+  id string pk
+  strategyName string
+  riskLevel string
+}
+
+investment_progress [icon: activity, color: pink]{
+  id string pk
+  progressPercentage float
+  lastUpdated timestamp
+}
+
+retirement_plans [icon: calendar, color: teal]{
+  id string pk
+  calculatorId string
+  goalId string
+  notificationCenterId string
+  retirementTreeId string
+}
+
+calculators [icon: cpu, color: gray]{
+  id string pk
+  calculationMethod string
+}
+
+goals [icon: target, color: brown]{
+  id string pk
+  goalDescription string
+  targetAmount float
+  targetDate timestamp
+}
+
+notification_centers [icon: bell, color: cyan]{
+  id string pk
+  notificationType string
+  message string
+}
+
+retirement_trees [icon: tree, color: olive]{
+  id string pk
+  treeStructure string
+}
+// End of tables
+// define relationships
+users.profileId > profiles.id
+users.accountId > accounts.id
+accounts.contributionId > contributions.id
+accounts.investmentPlanId > investment_plans.id
+investment_plans.investmentStrategyId > investment_strategies.id
+investment_plans.investmentProgressId > investment_progress.id
+retirement_plans.calculatorId > calculators.id
+retirement_plans.goalId > goals.id
+retirement_plans.notificationCenterId > notification_centers.id
+retirement_plans.retirementTreeId > retirement_trees.id
+
