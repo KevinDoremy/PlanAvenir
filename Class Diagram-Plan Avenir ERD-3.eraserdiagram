@@ -1,0 +1,42 @@
+entity-relationship-diagram
+
+title Plan Avenir ERD
+// End of tables
+// define tables
+users [icon: user, color: yellow]{
+  id string pk
+  name string
+  email string
+  password string
+}
+
+financial_plans [icon: dollar-sign, color: green]{
+  id string pk
+  user_id string fk
+  plan_name string
+  current_savings float
+  target_savings float
+  retirement_age int
+  monthly_contribution float
+}
+
+goals [icon: target, color: blue]{
+  id string pk
+  user_id string fk
+  goal_name string
+  goal_amount float
+  target_date date
+}
+
+suggestions [icon: message-circle, color: purple]{
+  id string pk
+  financial_plan_id string fk
+  suggestion_text string
+  created_at timestamp
+}
+
+// define relationships
+financial_plans.user_id > users.id
+goals.user_id > users.id
+suggestions.financial_plan_id > financial_plans.id
+

@@ -1,0 +1,29 @@
+cloud-architecture-diagram
+
+// Title
+title Plan Avenir Architecture
+
+// Nodes and groups
+Mobile App [icon: mobile]
+
+Backend [color: blue, icon: server] {
+  API Gateway [icon: aws-api-gateway] // entry point
+  Financial Calculation Service [icon: aws-lambda]
+  Financial Goals Service [icon: aws-lambda]
+  Analysis Service [icon: aws-lambda]
+  Suggestions Service [icon: aws-lambda]
+  Dependency Injection [icon: aws-lambda]
+  Main Database [icon: aws-rds]
+}
+
+// Connections
+Mobile App > API Gateway
+API Gateway > Financial Calculation Service
+API Gateway > Financial Goals Service
+API Gateway > Analysis Service
+API Gateway > Suggestions Service
+Financial Calculation Service > Main Database
+Financial Goals Service > Main Database
+Analysis Service > Main Database
+Suggestions Service > Main Database
+

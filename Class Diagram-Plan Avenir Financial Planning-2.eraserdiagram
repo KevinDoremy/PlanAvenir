@@ -1,0 +1,69 @@
+sequence-diagram
+
+title Plan Avenir Financial Planning
+
+// Define actors with icons and colors
+User [icon: user, color: green]
+MobileApp [icon: smartphone, color: blue]
+Server [icon: server, color: gray]
+Database [icon: database, color: orange]
+
+// User initiates the process
+User > MobileApp: Open Plan Avenir
+activate User
+
+// MobileApp requests data from Server
+MobileApp > Server: Request financial data
+activate MobileApp
+
+// Server processes the request
+Server > Database: Query financial data
+activate Server
+
+// Loop until data is retrieved
+loop [label: until data is retrieved, color: lightblue] {
+    Database > Server: Return data
+}
+
+// Server sends data back to MobileApp
+Server > MobileApp: Send financial data
+deactivate Server
+
+// MobileApp processes the data
+MobileApp > MobileApp: Process financial data
+
+// Conditional block for data analysis
+alt [label: data analysis, color: yellow] {
+    MobileApp > User: Display financial analysis
+}
+else [label: data error, color: red] {
+    MobileApp > User: Display error message
+}
+
+// User requests suggestions
+User > MobileApp: Request improvement suggestions
+
+// MobileApp requests suggestions from Server
+MobileApp > Server: Request suggestions
+activate Server
+
+// Server processes the request
+Server > Database: Query suggestions
+
+// Parallel processing for suggestions
+par [label: process suggestions, color: lightgreen] {
+    Database > Server: Return suggestion 1
+    and {
+        Database > Server: Return suggestion 2
+    }
+}
+
+// Server sends suggestions back to MobileApp
+Server > MobileApp: Send suggestions
+deactivate Server
+
+// MobileApp displays suggestions to User
+MobileApp > User: Display suggestions
+deactivate MobileApp
+deactivate User
+
